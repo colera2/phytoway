@@ -9,3 +9,6 @@ null, None
 
 원소 in 리스트
 true/false 반환
+
+
+ㅇㅎㅎㄹㅇㅎ
