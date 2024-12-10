@@ -153,7 +153,32 @@ def insert_shopping_conversion_table(data):
         if len(columns) != 15:
             print(f"데이터 형식 오류 (줄 번호 {idx + 1}): 예상 필드 개수는 15개인데, {len(columns)}개를 받았습니다. 데이터: {line}")
             continue
-        parsed_data.append(columns)
+
+        try: #오류가 발생해도 계속 진행시키는,,,, try에서 오류 발생하면 except로 넘어감. 
+            # 데이터 형식 변환
+            transformed_data = [
+                columns[0],  # date
+                int(columns[1]),  # customerId
+                columns[2],  # nccCampaignId
+                columns[3],  # adGroupId
+                columns[4] if columns[4] != '-' else None,  # searchKeyword
+                columns[5],  # adId
+                columns[6],  # businessId
+                columns[7],  # hour
+                columns[8],  # regionCode
+                columns[9],  # mediaCode
+                columns[10].strip(),  # pcMobileType
+                int(columns[11]),  # conversionMethod
+                columns[12],  # conversionType
+                int(columns[13]),  # conversionCount
+                float(columns[14]),  # salesbyConversion
+            ]
+            parsed_data.append(columns)
+
+        except Exception as e:
+            print(f"데이터 변환 오류 (줄 번호 {idx + 1}): {e}, 데이터: {line}")
+            continue
+
 
     # 파싱된 데이터의 개수 출력
     print(f"파싱된 데이터 개수: {len(parsed_data)}")
