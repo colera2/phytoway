@@ -49,28 +49,34 @@ def insert_data_into_sql(db_info, data):
         
         # 데이터 삽입 또는 업데이트 쿼리 작성
         insert_query = """
-            INSERT INTO NaverAPI_campaign (nccCampaignId, customerId, name, userLock, campaignTp, deliveryMethod, trackingUrl, trackingMode, usePeriod, dailyBudget, useDailyBudget, totalChargeCost, status, statusReason, expectCost, migType, delFlag, regTm, editTm) 
+            INSERT INTO naverapi_campaign (
+                "nccCampaignId", "customerId", "name", "userLock", "campaignTp", 
+                "deliveryMethod", "trackingUrl", "trackingMode", "usePeriod", 
+                "dailyBudget", "useDailyBudget", "totalChargeCost", "status", 
+                "statusReason", "expectCost", "migType", "delFlag", "regTm", "editTm"
+            ) 
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            ON CONFLICT (nccCampaignId) DO UPDATE SET
-                customerId = EXCLUDED.customerId,
-                name = EXCLUDED.name,
-                userLock = EXCLUDED.userLock,
-                campaignTp = EXCLUDED.campaignTp,
-                deliveryMethod = EXCLUDED.deliveryMethod,
-                trackingUrl = EXCLUDED.trackingUrl,
-                trackingMode = EXCLUDED.trackingMode,
-                usePeriod = EXCLUDED.usePeriod,
-                dailyBudget = EXCLUDED.dailyBudget,
-                useDailyBudget = EXCLUDED.useDailyBudget,
-                totalChargeCost = EXCLUDED.totalChargeCost,
-                status = EXCLUDED.status,
-                statusReason = EXCLUDED.statusReason,
-                expectCost = EXCLUDED.expectCost,
-                migType = EXCLUDED.migType,
-                delFlag = EXCLUDED.delFlag,
-                regTm = EXCLUDED.regTm,
-                editTm = EXCLUDED.editTm
+            ON CONFLICT ("nccCampaignId") DO UPDATE SET
+                "customerId" = EXCLUDED."customerId",
+                "name" = EXCLUDED."name",
+                "userLock" = EXCLUDED."userLock",
+                "campaignTp" = EXCLUDED."campaignTp",
+                "deliveryMethod" = EXCLUDED."deliveryMethod",
+                "trackingUrl" = EXCLUDED."trackingUrl",
+                "trackingMode" = EXCLUDED."trackingMode",
+                "usePeriod" = EXCLUDED."usePeriod",
+                "dailyBudget" = EXCLUDED."dailyBudget",
+                "useDailyBudget" = EXCLUDED."useDailyBudget",
+                "totalChargeCost" = EXCLUDED."totalChargeCost",
+                "status" = EXCLUDED."status",
+                "statusReason" = EXCLUDED."statusReason",
+                "expectCost" = EXCLUDED."expectCost",
+                "migType" = EXCLUDED."migType",
+                "delFlag" = EXCLUDED."delFlag",
+                "regTm" = EXCLUDED."regTm",
+                "editTm" = EXCLUDED."editTm";
         """
+
         
         # 데이터 삽입 반복
         for record in data:
