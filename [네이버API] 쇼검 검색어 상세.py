@@ -74,7 +74,7 @@ def get_shoppingkeyword_detail_data():
 
         paras = {
             'reportTp': 'SHOPPINGKEYWORD_DETAIL',  # 보고서 유형
-            'statDt': stat_date                     # 전날 날짜 자동 적용
+            'statDt': stat_date                    # 전날 날짜 자동 적용
         }
         print("보고서 생성 요청 중...")
         response = requests.post(BASE_URL + uri, headers=headers, json=paras)
